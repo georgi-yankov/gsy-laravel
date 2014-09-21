@@ -2,9 +2,25 @@
 
 <html lang="en-US">
     <head>
+        <?php
+        $title = 'GSY Laravel';
+        $current_path = Request::path();
+
+        switch ($current_path) {
+            case 'user/register':
+                $title .= ' | Registration';
+                break;
+            case 'user/login':
+                $title .= ' | Login';
+                break;
+            default:
+                break;
+        }
+        ?>
+
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>GSY Laravel</title>
+        <title>{{$title}}</title>
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta name="author" content="Georgi Yankov" />
@@ -19,11 +35,11 @@
 
             <header id="header" role="banner">
 
-                <nav class="navbar navbar-default" role="navigation">
+                <nav id="main-nav" class="navbar navbar-default" role="navigation">
                     <div class="container-fluid">
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse">
                                 <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
@@ -33,10 +49,14 @@
                         </div>
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <div class="collapse navbar-collapse" id="main-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="<?php echo URL::to('/user/register'); ?>">Registration</a></li>
-                                <li><a href="<?php echo URL::to('/user/login'); ?>">Login</a></li>
+                                <li <?php echo (Request::path() === 'user/register') ? 'class="active"' : ''; ?>>
+                                    <a href="{{URL::to('/user/register')}}">Registration</a>
+                                </li>
+                                <li <?php echo (Request::path() === 'user/login') ? 'class="active"' : ''; ?>>
+                                    <a href="{{URL::to('/user/login')}}">Login</a>
+                                </li>
                             </ul>
                         </div><!-- /.navbar-collapse -->
                     </div><!-- /.container-fluid -->
@@ -50,5 +70,6 @@
 
         {{ HTML::script('js/libs/jquery-2.1.1.min.js') }}
         {{ HTML::script('twitter-bootstrap/js/bootstrap.js') }}
+        {{ HTML::script('js/script.js') }}
     </body>
 </html>
