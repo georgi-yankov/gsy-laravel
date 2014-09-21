@@ -12,9 +12,13 @@
  */
 
 Route::get('/', function() {
-    return View::make('hello');
+    return View::make('index');
 });
 
 Route::get('/user/register', function() {
     return View::make('registration');
+});
+
+Route::get('/user/login', function() {
+    return View::make('login');
 });
