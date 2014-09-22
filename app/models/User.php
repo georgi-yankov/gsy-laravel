@@ -45,4 +45,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         }
     }
 
+    public function loginUser($data) {
+        $rules = array(
+            'input-email' => 'required|email',
+            'input-password' => 'required|min:7|max:50'
+        );
+        $validator = Validator::make($data, $rules, array(
+                    'input-email.email' => 'The email must be a valid email address.',
+                    'input-password.min' => 'The password must be at least 7 characters.'
+        ));
+
+        if ($validator->fails()) {
+            return Redirect::to('/user/login')->withErrors($validator)->withInput();
+        } else {
+            // check if user exist
+        }
+    }
+
 }

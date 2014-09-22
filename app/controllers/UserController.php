@@ -77,7 +77,10 @@ class UserController extends \BaseController {
     }
 
     public function store_login() {
-        echo 'store_login';
+        $data = Input::all();        
+        $user = new User();
+        $user->loginUser($data);
+        return Redirect::to('/user/login');
     }
 
 }
