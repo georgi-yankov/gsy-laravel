@@ -7,7 +7,7 @@
         $current_path = Request::path();
 
         switch ($current_path) {
-            case 'user/register':
+            case 'user/create':
                 $title .= ' | Registration';
                 break;
             case 'user/login':
@@ -51,8 +51,8 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="main-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li <?php echo (Request::path() === 'user/register') ? 'class="active"' : ''; ?>>
-                                    <a href="{{URL::to('/user/register')}}">Registration</a>
+                                <li <?php echo (Request::path() === 'user/create') ? 'class="active"' : ''; ?>>
+                                    <a href="{{URL::to('/user/create')}}">Registration</a>
                                 </li>
                                 <li <?php echo (Request::path() === 'user/login') ? 'class="active"' : ''; ?>>
                                     <a href="{{URL::to('/user/login')}}">Login</a>
@@ -63,8 +63,10 @@
                 </nav>
 
             </header>
-
-            @yield('content')
+            
+            <div id="middle">
+                @yield('content')
+            </div>
 
         </div>     
 

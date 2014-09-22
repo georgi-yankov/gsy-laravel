@@ -11,14 +11,12 @@
   |
  */
 
-Route::get('/', function() {
-    return View::make('index');
-});
-
-Route::get('/user/register', function() {
-    return View::make('registration');
-});
-
 Route::get('/user/login', function() {
     return View::make('login');
+});
+
+Route::resource('/user', 'UserController');
+
+Route::get('/', function() {
+    return View::make('index');
 });
