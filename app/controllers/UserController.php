@@ -27,24 +27,9 @@ class UserController extends \BaseController {
      */
     public function store() {
         $data = Input::all();
-        $rules = array(
-            'input-username' => 'required|min:5|max:50',
-            'input-email' => 'required|email',
-            'input-password' => 'required|min:7|max:50',
-            'input-repeat-password' => 'same:input-password'
-        );
-        $validator = Validator::make($data, $rules, array(
-            'input-username.min' => 'The username must be at least 5 characters.',
-            'input-email.email' => 'The email must be a valid email address.',
-            'input-password.min' => 'The password must be at least 7 characters.',
-            'input-repeat-password.same' => 'The repeat-password and password must match.'
-        ));
-
-        if ($validator->fails()) {
-            return Redirect::to('/user/create')->withErrors($validator)->withInput();
-        } else {
-            echo 'OK';
-        }
+        $user = new User();
+        $user->saveUser($data);
+        return Redirect::to('/user/create');
     }
 
     /**
@@ -85,6 +70,14 @@ class UserController extends \BaseController {
      */
     public function destroy($id) {
         //
+    }
+
+    public function login() {
+        return View::make('login');
+    }
+
+    public function store_login() {
+        echo 'store_login';
     }
 
 }

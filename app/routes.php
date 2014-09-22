@@ -11,9 +11,9 @@
   |
  */
 
-Route::get('/user/login', function() {
-    return View::make('login');
-});
+Route::get('/user/login', 'UserController@login');
+
+Route::post('/user/store_login', 'UserController@store_login');
 
 Route::resource('/user', 'UserController');
 
