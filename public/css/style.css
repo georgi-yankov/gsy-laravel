@@ -8,20 +8,14 @@
   padding: 15px; }
 
 /*********************************************
-    REGISTRATION & LOGIN FORMS
+    REGISTER & LOGIN FORMS
 *********************************************/
-#registration-form,
+#register-form,
 #login-form {
   max-width: 300px; }
-  #registration-form .form-group,
-  #login-form .form-group {
+  #register-form .form-group .error,
+  #login-form .form-group .error {
     color: #ff0000; }
-    #registration-form .form-group label,
-    #login-form .form-group label {
-      color: #333; }
-    #registration-form .form-group input,
-    #login-form .form-group input {
-      color: #333; }
 
 /*==============================================================================
     FOOTER

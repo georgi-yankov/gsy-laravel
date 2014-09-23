@@ -11,11 +11,14 @@
   |
  */
 
+// Show pages.
+Route::get('/user', 'UserController@index');
+Route::get('/user/register', 'UserController@register');
 Route::get('/user/login', 'UserController@login');
 
-Route::post('/user/store_login', 'UserController@store_login');
-
-Route::resource('/user', 'UserController');
+// Handle form submissions.
+Route::post('/user/register', 'UserController@handleRegister');
+Route::post('/user/login', 'UserController@handleLogin');
 
 Route::get('/', function() {
     return View::make('index');

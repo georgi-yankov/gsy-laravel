@@ -11,22 +11,16 @@
 }
 
 /*********************************************
-    REGISTRATION & LOGIN FORMS
+    REGISTER & LOGIN FORMS
 *********************************************/
 
-#registration-form,
+#register-form,
 #login-form {
     max-width: 300px;
 
     .form-group {
-        color: #ff0000;
-
-        label {
-            color: #333;
-        }
-
-        input {
-            color: #333;
+        .error {
+            color: #ff0000;
         }
     }
 }

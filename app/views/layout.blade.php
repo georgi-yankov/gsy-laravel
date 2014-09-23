@@ -3,19 +3,21 @@
 <html lang="en-US">
     <head>
         <?php
-        $title = 'GSY Laravel';
         $current_path = Request::path();
 
         switch ($current_path) {
-            case 'user/create':
-                $title .= ' | Registration';
+            case 'user/register':
+                $title = 'Register | ';
                 break;
             case 'user/login':
-                $title .= ' | Login';
+                $title = 'Login | ';
                 break;
             default:
+                $title = '';
                 break;
         }
+
+        $title .= 'GSY Laravel';
         ?>
 
         <meta charset="UTF-8" />
@@ -45,17 +47,17 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="<?php echo URL::to('/'); ?>">GSY Laravel</a>
+                            <a class="navbar-brand" href="{{ URL::to('/') }}">GSY Laravel</a>
                         </div>
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="main-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li <?php echo (Request::path() === 'user/create') ? 'class="active"' : ''; ?>>
-                                    <a href="{{URL::to('/user/create')}}">Registration</a>
+                                <li @if(Request::path() === 'user/register') class="active" @endif>
+                                    <a href="{{ action('UserController@register') }}">Registration</a>
                                 </li>
-                                <li <?php echo (Request::path() === 'user/login') ? 'class="active"' : ''; ?>>
-                                    <a href="{{URL::to('/user/login')}}">Login</a>
+                                <li @if(Request::path() === 'user/login') class="active" @endif>
+                                    <a href="{{ action('UserController@login') }}">Login</a>
                                 </li>
                             </ul>
                         </div><!-- /.navbar-collapse -->
@@ -63,7 +65,7 @@
                 </nav>
 
             </header>
-            
+
             <div id="middle">
                 @yield('content')
             </div>

@@ -8,7 +8,7 @@ class UserController extends \BaseController {
      * @return Response
      */
     public function index() {
-        
+        echo 'index action from UserController';
     }
 
     /**
@@ -16,8 +16,8 @@ class UserController extends \BaseController {
      *
      * @return Response
      */
-    public function create() {
-        return View::make('registration');
+    public function register() {
+        return View::make('register');
     }
 
     /**
@@ -25,11 +25,11 @@ class UserController extends \BaseController {
      *
      * @return Response
      */
-    public function store() {
+    public function handleRegister() {
         $data = Input::all();
         $user = new User();
         $user->saveUser($data);
-        return Redirect::to('/user/create');
+        return Redirect::to('/user/register');
     }
 
     /**
@@ -76,8 +76,8 @@ class UserController extends \BaseController {
         return View::make('login');
     }
 
-    public function store_login() {
-        $data = Input::all();        
+    public function handleLogin() {
+        $data = Input::all();
         $user = new User();
         $user->loginUser($data);
         return Redirect::to('/user/login');
