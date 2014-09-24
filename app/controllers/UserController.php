@@ -26,10 +26,21 @@ class UserController extends \BaseController {
      * @return Response
      */
     public function handleRegister() {
+        // get the POST data
         $data = Input::all();
+
+        // create a new model instance
         $user = new User();
-        $user->saveUser($data);
-        return Redirect::to('/user/register');
+
+        // attempt validation
+        if ($user->validate($data)) {
+            // success
+            return Redirect::action('UserController@index');
+        } else {
+            // error
+            $validator = $user->getValidator();
+            return Redirect::action('UserController@register')->withErrors($validator)->withInput();
+        }
     }
 
     /**
