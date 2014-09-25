@@ -52,14 +52,25 @@
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="main-navbar-collapse">
+                            
+                            @if(Auth::guest())
+
                             <ul class="nav navbar-nav">
                                 <li @if(Request::path() === 'user/register') class="active" @endif>
-                                    <a href="{{ action('UserController@register') }}">Registration</a>
+                                     <a href="{{ action('UserController@register') }}">Registration</a>
                                 </li>
                                 <li @if(Request::path() === 'user/login') class="active" @endif>
-                                    <a href="{{ action('UserController@login') }}">Login</a>
+                                     <a href="{{ action('UserController@login') }}">Login</a>
                                 </li>
                             </ul>
+
+                            @else
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">{{Auth::user()->username}}</a></li>
+                            </ul>
+
+                            @endif
                         </div><!-- /.navbar-collapse -->
                     </div><!-- /.container-fluid -->
                 </nav>

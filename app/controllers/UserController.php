@@ -33,9 +33,9 @@ class UserController extends \BaseController {
         $user = new User();
 
         // attempt validation
-        if ($user->validate($data)) {
+        if ($user->registerValidate($data)) {
             // success
-            return Redirect::action('UserController@index');
+            return Response::make('User created! Hurray!');
         } else {
             // error
             $validator = $user->getValidator();
@@ -83,14 +83,47 @@ class UserController extends \BaseController {
         //
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
     public function login() {
         return View::make('login');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
     public function handleLogin() {
+        // get the POST data
         $data = Input::all();
+
+        // create a new model instance
         $user = new User();
-        $user->loginUser($data);
+
+        // attempt validation
+        if ($user->loginValidate($data)) {
+            // valid
+            $credentials = Input::only('email', 'password');
+            $remember = Input::has('remember');
+            
+            if (Auth::attempt($credentials, $remember)) {
+                return Redirect::intended('/');
+            }
+            
+            return Redirect::to('/user/login');
+        } else {
+            // not valid
+            $validator = $user->getValidator();
+            return Redirect::action('UserController@login')->withErrors($validator)->withInput();
+        }
+    }
+
+    public function logout() {
+        Auth::logout();
         return Redirect::to('/user/login');
     }
 

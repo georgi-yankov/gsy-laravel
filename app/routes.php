@@ -11,10 +11,19 @@
   |
  */
 
+// Secret page, needs to be logged in.
+Route::get('/crush', array(
+    'before' => 'auth',
+    function() {
+        return View::make('crush');
+    }
+));
+
 // Show pages.
 Route::get('/user', 'UserController@index');
 Route::get('/user/register', 'UserController@register');
 Route::get('/user/login', 'UserController@login');
+Route::get('/user/logout', 'UserController@logout');
 
 // Handle form submissions.
 Route::post('/user/register', 'UserController@handleRegister');
