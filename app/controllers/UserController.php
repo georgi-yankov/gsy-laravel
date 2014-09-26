@@ -106,7 +106,7 @@ class UserController extends \BaseController {
 
         // attempt validation
         if ($user->loginValidate($data)) {
-            // valid
+            // success
             $credentials = Input::only('email', 'password');
             $remember = Input::has('remember');
             
@@ -116,7 +116,7 @@ class UserController extends \BaseController {
             
             return Redirect::to('/user/login');
         } else {
-            // not valid
+            // error
             $validator = $user->getValidator();
             return Redirect::action('UserController@login')->withErrors($validator)->withInput();
         }

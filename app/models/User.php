@@ -108,7 +108,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         $this->email = $data['email'];
         $this->created_at = $dateTime;
         $this->updated_at = $dateTime;
-//        $this->remember_token = $data['_token'];
         $this->save();
     }
 
