@@ -109,11 +109,11 @@ class UserController extends \BaseController {
             // success
             $credentials = Input::only('email', 'password');
             $remember = Input::has('remember');
-            
+
             if (Auth::attempt($credentials, $remember)) {
                 return Redirect::intended('/');
             }
-            
+
             return Redirect::to('/user/login');
         } else {
             // error
@@ -123,8 +123,12 @@ class UserController extends \BaseController {
     }
 
     public function logout() {
+        if (Auth::guest()) {
+            return Redirect::action('UserController@login');
+        }
+
         Auth::logout();
-        return Redirect::to('/user/login');
+        return Redirect::to('/');
     }
 
 }

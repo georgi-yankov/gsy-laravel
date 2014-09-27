@@ -10,7 +10,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ URL::to('/') }}">GSY Laravel</a>
+                <a class="navbar-brand" href="{{ action('GamesController@index') }}">Games Collection</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -30,8 +30,12 @@
                 @else
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Logged as: {{Auth::user()->username}}</a></li>
-                    <li><a href="/user/logout">Logout</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->username}} <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/user/logout">Logout</a></li>
+                        </ul>
+                    </li>
                 </ul>
 
                 @endif

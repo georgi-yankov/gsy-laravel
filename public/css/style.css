@@ -12,7 +12,7 @@
 *********************************************/
 #register-form,
 #login-form {
-  max-width: 300px; }
+  /*max-width: 300px;*/ }
   #register-form .form-group .error,
   #login-form .form-group .error {
     color: #a94442; }

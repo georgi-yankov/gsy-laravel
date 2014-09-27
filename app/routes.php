@@ -11,6 +11,9 @@
   |
  */
 
+// Bind route parameters.
+Route::model('game', 'Game');
+
 // Secret page, needs to be logged in.
 Route::get('/crush', array(
     'before' => 'auth',
@@ -20,15 +23,20 @@ Route::get('/crush', array(
 ));
 
 // Show pages.
+Route::get('/', 'GamesController@index');
+Route::get('/create', 'GamesController@create');
+Route::get('/edit/{game}', 'GamesController@edit');
+Route::get('/delete/{game}', 'GamesController@delete');
+
 Route::get('/user', 'UserController@index');
 Route::get('/user/register', 'UserController@register');
 Route::get('/user/login', 'UserController@login');
 Route::get('/user/logout', 'UserController@logout');
 
 // Handle form submissions.
+Route::post('/create', 'GamesController@handleCreate');
+Route::post('/edit', 'GamesController@handleEdit');
+Route::post('/delete', 'GamesController@handleDelete');
+
 Route::post('/user/register', 'UserController@handleRegister');
 Route::post('/user/login', 'UserController@handleLogin');
-
-Route::get('/', function() {
-    return View::make('index');
-});
