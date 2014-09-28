@@ -15,7 +15,7 @@
         <input type="text" class="form-control" name="publisher" />
     </div>
     <div class="checkbox">
-        <label for="complete">
+        <label>
             <input type="checkbox" name="complete" /> Complete?
         </label>
     </div>

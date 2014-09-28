@@ -28,6 +28,7 @@ class GamesController extends BaseController {
         $game->title = Input::get('title');
         $game->publisher = Input::get('publisher');
         $game->complete = Input::has('complete');
+        $game->user_id = Auth::user()->id;
         $game->save();
 
         return Redirect::action('GamesController@index');
